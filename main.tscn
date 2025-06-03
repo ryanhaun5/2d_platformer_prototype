@@ -1,0 +1,98 @@
+[gd_scene load_steps=8 format=3 uid="uid://b4uesvlywkbgb"]
+
+[ext_resource type="PackedScene" uid="uid://cqs38mk7yjejd" path="res://player.tscn" id="1_ig7tw"]
+[ext_resource type="AudioStream" uid="uid://l7fgrtywnds6" path="res://art/Mirrored Guilt.mp3" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://crmjc12loo4uy" path="res://reticle.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://c8phgkcqpt152" path="res://enemy.tscn" id="4_1bvp3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ig7tw"]
+size = Vector2(1000, 201)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ig7tw"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_lquwl"]
+vertices = PackedVector2Array(-1526.65, 140.68, -1613.16, 140.961, -1612.87, 137.344, -541.117, 196.992, -1528.63, 195.023, -1553.8, -648.797, 1489.52, -586.211, 1449.46, 261.969, 463.477, 182.867, -1613.72, 137.313, -1611, 40.5625, 467.492, 259.023)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 4, 0), PackedInt32Array(5, 6, 7, 8), PackedInt32Array(2, 9, 10), PackedInt32Array(0, 2, 10, 5), PackedInt32Array(7, 11, 8), PackedInt32Array(5, 8, 3, 0)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-1563, -659, 1500, -596, 1459, 272, 458, 269, 454, 193, -541, 207, -1539, 205, -1537, 150, -1624, 147, -1621, 40), PackedVector2Array(-1195, 39, -894, 40, -893, 150, -1197, 149), PackedVector2Array(-1609, 38, -1317, 40, -1316, 150, -1624, 151, -1615, 37)])
+
+[node name="Main" type="Node"]
+
+[node name="Player" parent="." instance=ExtResource("1_ig7tw")]
+position = Vector2(334, 0)
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(-47.5, 282)
+
+[node name="GroundCollision2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(8.5, 4.5)
+shape = SubResource("RectangleShape2D_ig7tw")
+
+[node name="GroundSprite2D" type="Sprite2D" parent="Ground"]
+position = Vector2(9, 4.5)
+scale = Vector2(1000, 200)
+texture = SubResource("PlaceholderTexture2D_ig7tw")
+
+[node name="Ground2" type="StaticBody2D" parent="."]
+position = Vector2(951, 279)
+
+[node name="GroundCollision2D" type="CollisionShape2D" parent="Ground2"]
+position = Vector2(8.5, 4.5)
+shape = SubResource("RectangleShape2D_ig7tw")
+
+[node name="GroundSprite2D" type="Sprite2D" parent="Ground2"]
+position = Vector2(9, 4.5)
+scale = Vector2(1000, 200)
+texture = SubResource("PlaceholderTexture2D_ig7tw")
+
+[node name="Ground4" type="StaticBody2D" parent="."]
+position = Vector2(-1047, 98)
+scale = Vector2(0.304739, -0.557392)
+
+[node name="GroundCollision2D" type="CollisionShape2D" parent="Ground4"]
+position = Vector2(8.5, 4.5)
+shape = SubResource("RectangleShape2D_ig7tw")
+
+[node name="GroundSprite2D" type="Sprite2D" parent="Ground4"]
+position = Vector2(9, 4.5)
+scale = Vector2(1000, 200)
+texture = SubResource("PlaceholderTexture2D_ig7tw")
+
+[node name="Ground5" type="StaticBody2D" parent="."]
+position = Vector2(-1472, 98)
+scale = Vector2(0.304739, -0.557392)
+
+[node name="GroundCollision2D" type="CollisionShape2D" parent="Ground5"]
+position = Vector2(8.5, 4.5)
+shape = SubResource("RectangleShape2D_ig7tw")
+
+[node name="GroundSprite2D" type="Sprite2D" parent="Ground5"]
+position = Vector2(9, 4.5)
+scale = Vector2(1000, 200)
+texture = SubResource("PlaceholderTexture2D_ig7tw")
+
+[node name="Ground3" type="StaticBody2D" parent="."]
+position = Vector2(-1044, 281)
+
+[node name="GroundCollision2D" type="CollisionShape2D" parent="Ground3"]
+position = Vector2(8.5, 4.5)
+shape = SubResource("RectangleShape2D_ig7tw")
+
+[node name="GroundSprite2D" type="Sprite2D" parent="Ground3"]
+position = Vector2(9, 4.5)
+scale = Vector2(1000, 200)
+texture = SubResource("PlaceholderTexture2D_ig7tw")
+
+[node name="AmbientMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_0xm2m")
+volume_db = -1.0
+pitch_scale = 0.5
+autoplay = true
+parameters/looping = false
+
+[node name="Reticle" parent="." instance=ExtResource("3_h2yge")]
+
+[node name="Enemy" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(-804, -145)
+
+[node name="EnemyNavigationRegion" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_lquwl")

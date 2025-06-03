@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://crmjc12loo4uy"]
+
+[ext_resource type="Texture2D" uid="uid://bp11ebgub1uj3" path="res://art/reticle.png" id="1_fvfu6"]
+[ext_resource type="Script" uid="uid://cjf4vtkg7a17y" path="res://reticle.gd" id="1_uuvrq"]
+
+[sub_resource type="Animation" id="Animation_ygrq2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.075, 0.075)]
+}
+
+[sub_resource type="Animation" id="Animation_fvfu6"]
+resource_name = "shoot"
+length = 0.2
+markers = [{
+"color": Color(1, 1, 1, 1),
+"name": &"max_scale",
+"time": 0.0997741
+}]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.075, 0.075), Vector2(0.15, 0.15), Vector2(0.075, 0.075)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_alrf3"]
+_data = {
+&"RESET": SubResource("Animation_ygrq2"),
+&"shoot": SubResource("Animation_fvfu6")
+}
+
+[node name="Reticle" type="Sprite2D"]
+scale = Vector2(0.075, 0.075)
+texture = ExtResource("1_fvfu6")
+script = ExtResource("1_uuvrq")
+
+[node name="ReticleAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_alrf3")
+}
